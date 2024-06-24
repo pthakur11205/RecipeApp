@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot, Root } from 'react-dom/client';
-import { WeddingApp } from './WeddingApp';
+import { WeddingApp } from './RecipeApp';
 
 
 const main: HTMLElement|null = document.getElementById('main');
