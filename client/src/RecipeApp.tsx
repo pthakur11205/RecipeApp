@@ -45,6 +45,8 @@ export class WeddingApp extends Component<{}, RecipeAppState> {
         onAddClick={this.doAddClick}
         />
       </div>;
+    } else if(this.state.show === "newRecipe") {
+      return<div>hello!</div>
     }
     return <div>
       
