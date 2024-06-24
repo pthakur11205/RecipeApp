@@ -1,4 +1,4 @@
-// The page for the new recipe
+// The page for the new recipe page where users can add new recipes to the list
 
 import React, { Component, MouseEvent, ChangeEvent} from 'react';
 import { Recipe } from './recipe';
@@ -23,7 +23,7 @@ export class NewRecipe extends Component<NewRecipeProps, NewRecipeState> {
         this.state = {name: '', foodType: null, prepTime: '', error: ''};
     }
 
-    // For rendering the page for the adding recipe
+    // For rendering the page for the adding recipes
     render = (): JSX.Element => {
         return (
             <div>
@@ -69,7 +69,11 @@ export class NewRecipe extends Component<NewRecipeProps, NewRecipeState> {
         this.setState({ prepTime: event.target.value });
     };
 
-    // Handles adding the new recipe 
+    /**
+     * Handles adding the recipe to the recipe list
+     * Sets error message to be thrown if fields are empty or invalid
+     * @returns void
+     */
     handleAddClick = (): void => {
         const { name, foodType, prepTime } = this.state;
 

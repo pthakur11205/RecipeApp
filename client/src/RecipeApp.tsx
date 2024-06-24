@@ -1,3 +1,5 @@
+// The Recipe app that handles the actions between the different pages and the overall app state
+
 import React, { Component, ChangeEvent, MouseEvent } from "react";
 import { isRecord } from './record';
 import { Recipe } from "./recipe";
@@ -6,8 +8,10 @@ import { NewRecipe } from "./NewRecipe";
 
 
 
-
+// Page type for switching between pages
 type Page = "RecipeList" | "newRecipe" | {kind: "recipeDetails", index: number}
+
+// Handles the app state
 type RecipeAppState = {
   recipes: Recipe[],
   show: Page
@@ -37,7 +41,9 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
       show: "RecipeList"};
   }
   
+
   render = (): JSX.Element => {
+    // Renders recipe list page
     if(this.state.show === "RecipeList") {
       return <div>
         <h4> To add a new recipe, click the "Add New Recipe" button</h4>
@@ -48,6 +54,7 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
         onAddClick={this.doAddClick}
         />
       </div>;
+    // Renders new recipe page
     } else if(this.state.show === "newRecipe") {
       return<div>
         <NewRecipe 

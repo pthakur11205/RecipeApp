@@ -1,3 +1,5 @@
+// The Recipe List page displays list of the current recipes, the default page
+
 import React, { Component, MouseEvent} from 'react';
 import { Recipe } from './recipe';
 
@@ -15,7 +17,7 @@ export class RecipeList extends Component<RecipeListProps> {
 
     }
 
-    // Renders the recipe list with the food type and prep time listed along with it
+    // Renders the recipe list with the food type and prep time listed along with it, with an "Edit Recipes" link to add details
     render = (): JSX.Element => {
         const { recipes, onOpenClick, onAddClick } = this.props;
 
@@ -42,12 +44,12 @@ export class RecipeList extends Component<RecipeListProps> {
 
     }
 
-    // Button click for add
+    // Button click for add to navigate to new recipe page
     doAddRecipeClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
         this.props.onAddClick();
     };
 
-    // For click on guest name
+    // Handles click on "Edit Recipe"
     doOpenClick = (_evt: MouseEvent<HTMLAnchorElement>, index: number): void => {
         this.props.onOpenClick(index);
     }
