@@ -28,7 +28,7 @@ export class RecipeList extends Component<RecipeListProps> {
                         <li key={index}>
                             <div>
                                 <strong>{recipe.name}: </strong>
-                                <a href="#" onClick={(evt) => this.doOpenClick(evt, index)}>  Recipe Details</a>
+                                <a href="#" onClick={(evt) => this.doOpenClick(evt, index)}>  Edit Recipe</a>
                                 <p>Food Type: {recipe.foodType}</p>
                                 <p>Prep Time: {recipe.prepTime} minutes</p>
                             </div>

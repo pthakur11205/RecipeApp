@@ -2,6 +2,7 @@ import React, { Component, ChangeEvent, MouseEvent } from "react";
 import { isRecord } from './record';
 import { Recipe } from "./recipe";
 import { RecipeList } from "./RecipeList";
+import { NewRecipe } from "./NewRecipe";
 
 
 
@@ -13,8 +14,8 @@ type RecipeAppState = {
 }
 
 
-/** Displays the UI of the Wedding rsvp application. */
-export class WeddingApp extends Component<{}, RecipeAppState> {
+/** Displays the UI of the Recipe application. */
+export class RecipeApp extends Component<{}, RecipeAppState> {
 
   constructor(props: {}) {
     super(props);
@@ -39,6 +40,8 @@ export class WeddingApp extends Component<{}, RecipeAppState> {
   render = (): JSX.Element => {
     if(this.state.show === "RecipeList") {
       return <div>
+        <h4> To add a new recipe, click the "Add New Recipe" button</h4>
+        <h4> To add instructions and ingredients to a recipe, please click "Edit Recipe" next to the recipe you would like to change.</h4>
         <RecipeList
         recipes={this.state.recipes}
         onOpenClick={this.doOpenClick}
@@ -46,7 +49,12 @@ export class WeddingApp extends Component<{}, RecipeAppState> {
         />
       </div>;
     } else if(this.state.show === "newRecipe") {
-      return<div>hello!</div>
+      return<div>
+        <NewRecipe 
+          onAddRecipeClick={this.handleAddRecipe}
+          onBackClick={this.handleBackToList}
+        />
+      </div>
     }
     return <div>
       
@@ -66,6 +74,22 @@ export class WeddingApp extends Component<{}, RecipeAppState> {
     console.log('Open Recipe clicked for index:', index);
     this.setState({show: {kind: "recipeDetails", index: index}}
     )
+  };
+
+  // Handles adding the recipe to the recipe list
+  handleAddRecipe = (newRecipe: Recipe): void => {
+    const updatedRecipes = [...this.state.recipes, newRecipe];
+    this.setState({ recipes: updatedRecipes, show: "RecipeList" });
+  };
+
+  // For opening the recipe details
+  handleOpenRecipe = (index: number): void => {
+      this.setState({ show: { kind: "recipeDetails", index: index } });
+  };
+
+  // Handles the back click
+  handleBackToList = (): void => {
+      this.setState({ show: "RecipeList" });
   };
 
 
