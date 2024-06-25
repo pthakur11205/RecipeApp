@@ -98,6 +98,7 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
                 <h2>Recipe Details</h2>
                 <div>
                     <h3>Ingredients</h3>
+                    <h4>If you wish to change an ingredient or its quantity, simply click and edit in the table below. It will automatically save.</h4>
                     {ingredients.map((ingredient, index) => (
                         <div key={index}>
                             <input
@@ -147,6 +148,7 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
                         <button onClick={this.handleAddInstruction}>Add New Instruction</button>
                     </div>
                 </div>
+                <br></br>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <button onClick={this.handleSave}>Save</button>
                 <button onClick={this.props.onBackClick}>Back to Recipe List</button>
