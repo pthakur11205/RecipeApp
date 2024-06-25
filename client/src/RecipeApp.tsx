@@ -1,5 +1,5 @@
 // The Recipe app that handles the actions between the different pages and the overall app state
-import React, { Component, ChangeEvent, MouseEvent } from "react";
+import React, { Component} from "react";
 import { isRecord } from './record';
 import { Recipe } from "./recipe";
 import { RecipeList } from "./RecipeList";
@@ -131,9 +131,7 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
   };
 
   // Handles adding the recipe to the recipe list
-  handleAddRecipe = (newRecipe: Recipe): void => {
-    // const updatedRecipes = [...this.state.recipes, newRecipe];
-    // this.setState({ recipes: updatedRecipes, show: "RecipeList" });
+  handleAddRecipe = (): void => {
     this.doRecipeListFetch();
   };
 
@@ -148,11 +146,7 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
   };
 
   // Handles updating the recipe with new information
-  handleUpdateRecipe = (updatedRecipe: Recipe): void => {
-    // const updatedRecipes = this.state.recipes.map((recipe, index) =>
-    //     index === (this.state.show as { kind: "recipeDetails"; index: number }).index ? updatedRecipe : recipe
-    // );
-    // this.setState({ recipes: updatedRecipes, show: "RecipeList" });
+  handleUpdateRecipe = (): void => {
 
     this.doRecipeListFetch();
   };

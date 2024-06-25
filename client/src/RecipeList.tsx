@@ -19,7 +19,7 @@ export class RecipeList extends Component<RecipeListProps> {
 
     // Renders the recipe list with the food type and prep time listed along with it, with an "Edit Recipes" link to add details
     render = (): JSX.Element => {
-        const { recipes, onOpenClick, onAddClick } = this.props;
+        const { recipes } = this.props;
 
 
         return (

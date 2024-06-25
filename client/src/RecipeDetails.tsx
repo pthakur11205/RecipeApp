@@ -131,7 +131,7 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
     };
 
     // Calls the save function with the updated recipe information
-    doSaveJson = (data: unknown): void => {
+    doSaveJson = (): void => {
         // Perform any necessary actions after successful save
         this.props.onUpdateRecipe({
             ...this.props.recipe,
@@ -191,6 +191,7 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
                 </div>
                 <div>
                     <h3>Instructions</h3>
+                    <h4>Type out your instructions in order, they will automatically be numbered.</h4>
                     {instructions.map((instruction, index) => (
                         <div key={index}>
                             {index + 1}. {instruction}
