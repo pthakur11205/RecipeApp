@@ -31,30 +31,37 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
         };
     }
 
+    // Handles a name change for a current/previously saved ingredient
     handleIngredientNameChange = (event: ChangeEvent<HTMLInputElement>, index: number): void => {
         const ingredients = [...this.state.ingredients];
         ingredients[index].name = event.target.value;
         this.setState({ ingredients });
     };
 
+    // Handles a quantity change for a current/previously saved ingredient
     handleIngredientQuantityChange = (event: ChangeEvent<HTMLInputElement>, index: number): void => {
         const ingredients = [...this.state.ingredients];
         ingredients[index].quantity = event.target.value;
         this.setState({ ingredients });
     };
 
+    // Handles a name change for a new/currently unsaved ingredient
     handleNewIngredientNameChange = (event: ChangeEvent<HTMLInputElement>): void => {
         this.setState({ newIngredientName: event.target.value });
     };
 
+    // Handles a quantity change for a new/currently unsaved ingredient
     handleNewIngredientQuantityChange = (event: ChangeEvent<HTMLInputElement>): void => {
         this.setState({ newIngredientQuantity: event.target.value });
     };
 
+    
     handleNewInstructionChange = (event: ChangeEvent<HTMLInputElement>): void => {
         this.setState({ newInstruction: event.target.value });
     };
 
+    // Handles adding a new ingredient to the recipe
+    // Sets error to be thrown if invalid fields
     handleAddIngredient = (): void => {
         const { newIngredientName, newIngredientQuantity, ingredients } = this.state;
         if (newIngredientName.trim() === '' || newIngredientQuantity.trim() === '') {
@@ -66,6 +73,8 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
         this.setState({ ingredients: updatedIngredients, newIngredientName: '', newIngredientQuantity: '', error: '' });
     };
 
+    // Handles adding a new instruction to the recipe
+    // Sets error to be thrown if invalid fields
     handleAddInstruction = (): void => {
         const { newInstruction, instructions } = this.state;
         if (newInstruction.trim() === '') {
@@ -77,6 +86,7 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
         this.setState({ instructions: updatedInstructions, newInstruction: '', error: '' });
     };
 
+    // Handles saving any new instructions/ingredients to the recipe
     handleSave = (): void => {
         const { ingredients, instructions } = this.state;
 
@@ -90,6 +100,8 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
         this.props.onBackClick();
     };
 
+
+    // Renders the recipe details page
     render(): JSX.Element {
         const { ingredients, instructions, newIngredientName, newIngredientQuantity, newInstruction, error } = this.state;
 
