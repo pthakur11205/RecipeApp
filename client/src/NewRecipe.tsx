@@ -92,8 +92,54 @@ export class NewRecipe extends Component<NewRecipeProps, NewRecipeState> {
             instructions: [],
         };
 
+        const body = { name: newRecipe.name, content: newRecipe };
+        fetch("/api/save", {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: { "Content-Type": "application/json" }
+        })
+            .then(this.doAddResp)
+            .catch(() => this.doAddError("Failed to connect to server"));
+    };
 
-        this.props.onAddRecipeClick(newRecipe);
+    // Checks the response from the server when data is added and saved
+    doAddResp = (resp: Response): void => {
+        if (resp.status === 200) {
+            resp.json().then(this.doAddJson)
+                .catch(() => this.doAddError("200 response is not JSON"));
+        } else if (resp.status === 400) {
+            resp.text().then(this.doAddError)
+                .catch(() => this.doAddError("400 response is not text"));
+        } else {
+            this.doAddError(`Bad status code from /api/save: ${resp.status}`);
+        }
+    };
+
+    // Calls the add function with new/updated recipe info
+    doAddJson = (data: unknown): void => {
+        if (typeof data !== 'object' || data === null) {
+            console.error("Bad data from /api/save: not a record", data);
+            return;
+        }
+
+        console.log("Saved!");
+        this.props.onAddRecipeClick({
+            name: this.state.name.trim(),
+            foodType: this.state.foodType as 'Non-veg' | 'Veg',
+            prepTime: parseInt(this.state.prepTime),
+            ingredients: [],
+            instructions: []
+        });
+    };
+
+    // Sets the error state if necessary
+    doAddError = (msg: string): void => {
+        this.setState({ error: msg });
+    };
+
+    // Handles back button
+    handleBackClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
+        this.props.onBackClick();
     };
 
 }

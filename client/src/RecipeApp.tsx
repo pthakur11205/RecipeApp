@@ -5,6 +5,7 @@ import { Recipe } from "./recipe";
 import { RecipeList } from "./RecipeList";
 import { NewRecipe } from "./NewRecipe";
 import { RecipeDetails } from "./RecipeDetails";
+import { parseRecipe } from "./recipe";
 
 
 // Page type for switching between pages
@@ -23,23 +24,58 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
   constructor(props: {}) {
     super(props);
 
-    this.state = {recipes: [{
-      name: "Spaghetti Carbonara",
-      foodType: "Non-veg",
-      ingredients: [{ name: "Spaghetti", quantity: "200g" }, { name: "Bacon", quantity: "100g" }],
-      instructions: ["Boil spaghetti", "Cook bacon until crispy", "Mix spaghetti and bacon with egg and cheese mixture"],
-      prepTime: 30
-      },
-        {
-      name: "Caprese Salad",
-      foodType: "Veg",
-      ingredients: [{ name: "Tomatoes", quantity: "2" }, { name: "Mozzarella", quantity: "150g" }, { name: "Basil", quantity: "a handful" }],
-      instructions: ["Slice tomatoes and mozzarella", "Arrange on a plate with basil leaves", "Drizzle with olive oil and balsamic vinegar"],
-      prepTime: 15
-    }], 
+    this.state = {recipes: [], 
       show: "RecipeList"};
   }
-  
+
+  componentDidMount = (): void => {
+    this.doRecipeListFetch();
+  } 
+
+  // Fetch call recipe list
+  doRecipeListFetch = (): void => {
+    fetch("/api/recipeInfos")
+    .then((res) => this.doListResp(res))
+    .catch(() => this.doListError("failed to connect to server"));
+  }
+
+  // Checks the status of response from the server when recipes are listed
+  doListResp = (res: Response): void => {
+    if (res.status === 200) {
+      res.json().then((val) => this.doListJson(val))
+        .catch(() => this.doListError("200 response is not JSON"));
+    } else if (res.status === 400) {
+      res.text().then(this.doListError)
+        .catch(() => this.doListError("400 response is not text"));
+    } else {
+      this.doListError(`bad status code: ${res.status}`);
+    }
+  };
+
+   // Updates list of recipes once recipe info is validated
+   doListJson = (val: unknown): void => {
+    if (!isRecord(val) || !Array.isArray(val.recipeInfos)) {
+      console.error('Invalid JSON from /api/recipeInfos', val);
+      return;
+    }
+
+    const recipeInfos: Recipe[] = [];
+    for (const recipeInfo of val.recipeInfos) {
+      if (parseRecipe(recipeInfo) !== undefined) {
+        recipeInfos.push(recipeInfo);
+      } else {
+        console.error('Invalid name from /api/recipeInfos', recipeInfo);
+        return;
+      }
+    }
+
+    this.setState({recipes: recipeInfos, show: "RecipeList"})
+  }
+
+  // Sets the error message
+  doListError = (msg: string): void => {
+    console.error(`Error fetching /api/recipeInfos: ${msg}`);
+  };
 
   render = (): JSX.Element => {
     const { show, recipes } = this.state;
@@ -96,8 +132,9 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
 
   // Handles adding the recipe to the recipe list
   handleAddRecipe = (newRecipe: Recipe): void => {
-    const updatedRecipes = [...this.state.recipes, newRecipe];
-    this.setState({ recipes: updatedRecipes, show: "RecipeList" });
+    // const updatedRecipes = [...this.state.recipes, newRecipe];
+    // this.setState({ recipes: updatedRecipes, show: "RecipeList" });
+    this.doRecipeListFetch();
   };
 
   // For opening the recipe details
@@ -107,15 +144,17 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
 
   // Handles the back click
   handleBackToList = (): void => {
-      this.setState({ show: "RecipeList" });
+      this.doRecipeListFetch();
   };
 
   // Handles updating the recipe with new information
   handleUpdateRecipe = (updatedRecipe: Recipe): void => {
-    const updatedRecipes = this.state.recipes.map((recipe, index) =>
-        index === (this.state.show as { kind: "recipeDetails"; index: number }).index ? updatedRecipe : recipe
-    );
-    this.setState({ recipes: updatedRecipes, show: "RecipeList" });
+    // const updatedRecipes = this.state.recipes.map((recipe, index) =>
+    //     index === (this.state.show as { kind: "recipeDetails"; index: number }).index ? updatedRecipe : recipe
+    // );
+    // this.setState({ recipes: updatedRecipes, show: "RecipeList" });
+
+    this.doRecipeListFetch();
   };
 
 

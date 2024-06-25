@@ -87,8 +87,18 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
     };
 
     // Handles saving any new instructions/ingredients to the recipe
-    handleSave = (): void => {
+    handleSave = (_evt: MouseEvent<HTMLButtonElement>): void => {
         const { ingredients, instructions } = this.state;
+
+        if (ingredients.some(ingredient => ingredient.name.trim() === '' || ingredient.quantity.trim() === '')) {
+            this.setState({ error: 'All ingredients must have a name and quantity.' });
+            return;
+        }
+        
+        if (instructions.some(instruction => instruction.trim() === '')) {
+            this.setState({ error: 'All instructions must be filled out.' });
+            return;
+        }
 
         const updatedRecipe: Recipe = {
             ...this.props.recipe,
@@ -96,8 +106,44 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
             instructions
         };
 
-        this.props.onUpdateRecipe(updatedRecipe);
+        // Save the updated recipe
+        const body = { name: updatedRecipe.name, content: updatedRecipe };
+        fetch("/api/save", {
+            method: "POST", 
+            body: JSON.stringify(body),
+            headers: {"Content-Type": "application/json"}
+        })
+        .then(this.doSaveResp)
+        .catch(() => this.doSaveError("Failed to connect to server"));
+    };
+
+    // Checks response from the server when data is saved
+    doSaveResp = (resp: Response): void => {
+        if (resp.status === 200) {
+            resp.json().then(this.doSaveJson)
+                .catch(() => this.doSaveError("200 response is not JSON"));
+        } else if (resp.status === 400) {
+            resp.text().then(this.doSaveError)
+                .catch(() => this.doSaveError("400 response is not text"));
+        } else {
+            this.doSaveError(`Bad status code from /api/save: ${resp.status}`);
+        }
+    };
+
+    // Calls the save function with the updated recipe information
+    doSaveJson = (data: unknown): void => {
+        // Perform any necessary actions after successful save
+        this.props.onUpdateRecipe({
+            ...this.props.recipe,
+            ingredients: this.state.ingredients,
+            instructions: this.state.instructions
+        });
         this.props.onBackClick();
+    };
+
+    // Sets error message
+    doSaveError = (msg: string): void => {
+        this.setState({ error: msg });
     };
 
 
