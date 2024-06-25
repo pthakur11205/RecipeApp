@@ -5,7 +5,7 @@ import { isRecord } from "./record";
 export type Recipe = {
     readonly name: string;
     readonly foodType: 'Non-veg' | 'Veg';
-    readonly ingredients: {name: string; quantity: string }[];
+    readonly ingredients: { name: string; quantity: string }[];
     readonly instructions: string[];
     readonly prepTime: number; // in minutes
 }
