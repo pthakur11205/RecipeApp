@@ -1,3 +1,4 @@
+// For the recipe details page where users can add instructions and ingredients
 import React, { Component, ChangeEvent, MouseEvent } from 'react';
 import { Recipe } from './recipe';
 
@@ -7,6 +8,7 @@ type RecipeDetailsProps = {
     onBackClick: () => void;
 };
 
+// Keeps track of the state
 type RecipeDetailsState = {
     ingredients: { name: string; quantity: string }[];
     instructions: string[];

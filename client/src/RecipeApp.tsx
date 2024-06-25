@@ -1,11 +1,10 @@
 // The Recipe app that handles the actions between the different pages and the overall app state
-
 import React, { Component, ChangeEvent, MouseEvent } from "react";
 import { isRecord } from './record';
 import { Recipe } from "./recipe";
 import { RecipeList } from "./RecipeList";
 import { NewRecipe } from "./NewRecipe";
-
+import { RecipeDetails } from "./RecipeDetails";
 
 
 // Page type for switching between pages
@@ -43,6 +42,7 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
   
 
   render = (): JSX.Element => {
+    const { show, recipes } = this.state;
     // Renders recipe list page
     if(this.state.show === "RecipeList") {
       return <div>
@@ -62,11 +62,22 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
           onBackClick={this.handleBackToList}
         />
       </div>
+    // Renders the recipe details page
+    } else if(typeof show === "object" && show.kind === "recipeDetails"){
+      return<div>
+        <RecipeDetails
+            recipe={recipes[show.index]}
+            onUpdateRecipe={this.handleUpdateRecipe}
+            onBackClick={this.handleBackToList}
+        />
+
+      </div>
     }
-    return <div>
-      
-    <p>poopoo</p>
-    </div>;
+
+    // To satisfy the compiler
+    return<div>
+      Something went wrong!
+    </div>
     
   };
 
@@ -97,6 +108,14 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
   // Handles the back click
   handleBackToList = (): void => {
       this.setState({ show: "RecipeList" });
+  };
+
+  // Handles updating the recipe with new information
+  handleUpdateRecipe = (updatedRecipe: Recipe): void => {
+    const updatedRecipes = this.state.recipes.map((recipe, index) =>
+        index === (this.state.show as { kind: "recipeDetails"; index: number }).index ? updatedRecipe : recipe
+    );
+    this.setState({ recipes: updatedRecipes, show: "RecipeList" });
   };
 
 
