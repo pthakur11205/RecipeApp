@@ -6,10 +6,11 @@ import { RecipeList } from "./RecipeList";
 import { NewRecipe } from "./NewRecipe";
 import { RecipeDetails } from "./RecipeDetails";
 import { parseRecipe } from "./recipe";
+import { ViewRecipe } from "./ViewRecipe";
 
 
 // Page type for switching between pages
-type Page = "RecipeList" | "newRecipe" | {kind: "recipeDetails", index: number}
+type Page = "RecipeList" | "newRecipe" | {kind: "recipeDetails", index: number} | {kind: "viewRecipe", index: number}
 
 // Handles the app state
 type RecipeAppState = {
@@ -86,6 +87,7 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
         recipes={this.state.recipes}
         onOpenClick={this.doOpenClick}
         onAddClick={this.doAddClick}
+        onViewClick={this.doViewClick}
         />
       </div>;
     // Renders new recipe page
@@ -103,6 +105,14 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
             recipe={recipes[show.index]}
             onUpdateRecipe={this.handleUpdateRecipe}
             onBackClick={this.handleBackToList}
+        />
+
+      </div>
+    } else if(typeof show === "object" && show.kind === "viewRecipe"){
+      return<div>
+        <ViewRecipe
+          recipe={recipes[show.index]}
+          onBackClick={this.handleBackToList}
         />
 
       </div>
@@ -146,6 +156,12 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
   // Handles updating the recipe with new information
   handleUpdateRecipe = (): void => {
     this.doRecipeListFetch();
+  };
+
+  // For viewing the recipe
+  doViewClick = (index: number): void => {
+    console.log('View Recipe clicked for index:', index);
+    this.setState({ show: { kind: "viewRecipe", index: index } });
   };
 
   

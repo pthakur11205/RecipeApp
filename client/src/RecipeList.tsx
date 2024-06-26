@@ -8,6 +8,7 @@ type RecipeListProps = {
     readonly recipes: Recipe[]; 
     onOpenClick: (index: number) => void;
     onAddClick: () => void;
+    onViewClick: (index: number) => void;
 }
 
 
@@ -26,13 +27,14 @@ export class RecipeList extends Component<RecipeListProps> {
         return (
             <div className="recipe-list-container">
                 <h2 className="title">Recipe List</h2>
-                <h4 className="title"> To add instructions and ingredients to a recipe, please click "Edit Recipe" next to the recipe you would like to change.</h4>
+                <h4 className="title"> To add/edit instructions and ingredients of a recipe, please click "Edit Recipe" next to the recipe you would like to change.</h4>
                 <ul className="recipe-list">
                     {recipes.map((recipe, index) => (
                         <li key={index} className="recipe-item">
                             <div className="recipe-content">
                                 <strong>{recipe.name} </strong>
                                 <a href="#" onClick={(evt) => this.doOpenClick(evt, index)} className="edit-link"> Edit Recipe</a>
+                                <a href="#" onClick={(evt) => this.doViewClick(evt, index)} className="edit-link">View Recipe</a>
                                 <p>Food Type: {recipe.foodType}</p>
                                 <p>Prep Time: {recipe.prepTime} minutes</p>
                             </div>
@@ -55,6 +57,10 @@ export class RecipeList extends Component<RecipeListProps> {
     doOpenClick = (_evt: MouseEvent<HTMLAnchorElement>, index: number): void => {
         this.props.onOpenClick(index);
     }
+
+    doViewClick = (_evt: MouseEvent<HTMLAnchorElement>, index: number): void => {
+        this.props.onViewClick(index);
+    };
 
 
 }
