@@ -1,0 +1,60 @@
+
+.recipe-list-container {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* For title of the page */
+.title {
+    text-align: center;
+    color: #333;
+}
+
+.recipe-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recipe-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.recipe-item:hover {
+    background-color: #f1f1f1;
+}
+
+.recipe-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-link {
+    color: #007BFF;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+.edit-link:hover {
+    text-decoration: underline;
+}
+
+.add-recipe-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-recipe-button:hover {
+    background-color: #0056b3;
+}
