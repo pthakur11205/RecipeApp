@@ -14,7 +14,7 @@ export const ViewRecipe: React.FC<ViewRecipeProps> = ({ recipe, onBackClick }) =
       <h2>{recipe.name}</h2>
       <p><strong>Food Type:</strong> {recipe.foodType}</p>
       <p><strong>Prep Time:</strong> {recipe.prepTime} minutes</p>
-      <h3>Ingredients:</h3>
+      <h4>Ingredients:</h4>
       <ul>
         {recipe.ingredients.map((ingredient, idx) => (
           <li key={idx}>
@@ -22,7 +22,7 @@ export const ViewRecipe: React.FC<ViewRecipeProps> = ({ recipe, onBackClick }) =
           </li>
         ))}
       </ul>
-      <h3>Instructions:</h3>
+      <h4>Instructions:</h4>
       <ol>
         {recipe.instructions.map((instruction, idx) => (
           <li key={idx}>{instruction}</li>
