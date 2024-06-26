@@ -3,11 +3,14 @@
     font-family: Arial, sans-serif;
 }
 
+/* For the title of the page */
 .title {
     text-align: center;
     color: #333;
 }
 
+
+/* Overall group of recipes */
 .recipe-list {
     display: flex;
     flex-wrap: wrap;
@@ -17,6 +20,7 @@
     justify-content: center; 
 }
 
+/* Individual recipe item */
 .recipe-item {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -35,6 +39,7 @@
     flex-direction: column;
 }
 
+/* For 'Edit Recipe' Link */
 .edit-link {
     color: #007BFF;
     text-decoration: none;
@@ -45,6 +50,7 @@
     text-decoration: underline;
 }
 
+/* For add button */
 .add-recipe-button {
     display: block;
     margin: 20px auto;

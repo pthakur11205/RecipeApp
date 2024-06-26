@@ -145,10 +145,10 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
 
   // Handles updating the recipe with new information
   handleUpdateRecipe = (): void => {
-
     this.doRecipeListFetch();
   };
 
+  
 
 
 }
