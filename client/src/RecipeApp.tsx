@@ -82,8 +82,6 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
     // Renders recipe list page
     if(this.state.show === "RecipeList") {
       return <div>
-        <h4> To add a new recipe, click the "Add New Recipe" button</h4>
-        <h4> To add instructions and ingredients to a recipe, please click "Edit Recipe" next to the recipe you would like to change.</h4>
         <RecipeList
         recipes={this.state.recipes}
         onOpenClick={this.doOpenClick}
