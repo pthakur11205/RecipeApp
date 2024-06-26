@@ -4,7 +4,7 @@ import { isRecord } from "./record";
 // Type recipe and all of its properties
 export type Recipe = {
     readonly name: string;
-    readonly foodType: 'Non-veg' | 'Veg';
+    readonly foodType: 'Non-vegetarian' | 'Vegetarian';
     readonly ingredients: { name: string; quantity: string }[];
     readonly instructions: string[];
     readonly prepTime: number; // in minutes
@@ -29,7 +29,7 @@ export const parseRecipe = (val: unknown): Recipe | undefined => {
         return undefined;
     }
 
-    if (val.foodType !== "Non-veg" && val.foodType !== "Veg") {
+    if (val.foodType !== "Non-vegetarian" && val.foodType !== "Vegetarian") {
         console.error("Invalid 'foodType' for recipe:", val);
         return undefined;
     }

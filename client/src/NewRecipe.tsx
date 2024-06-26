@@ -11,7 +11,7 @@ type NewRecipeProps = {
 // Accounts for the state of the new recipe page
 type NewRecipeState = {
     name: string,
-    foodType: 'Non-veg' | 'Veg' | null,
+    foodType: 'Non-vegetarian' | 'Vegetarian' | null,
     prepTime: string,
     error: string
 }
@@ -37,8 +37,8 @@ export class NewRecipe extends Component<NewRecipeProps, NewRecipeState> {
                     <label>Food Type: </label>
                     <select value={this.state.foodType ?? ''} onChange={this.handleFoodTypeChange}>
                         <option value="">Select Food Type</option>
-                        <option value="Veg">Veg</option>
-                        <option value="Non-veg">Non-veg</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Non-vegetarian">Non-vegetarian</option>
                     </select>
                 </div>
                 <div>
@@ -61,7 +61,7 @@ export class NewRecipe extends Component<NewRecipeProps, NewRecipeState> {
 
     // Handles the new food type of the recipe
     handleFoodTypeChange = (event: ChangeEvent<HTMLSelectElement>): void => {
-        this.setState({ foodType: event.target.value as 'Non-veg' | 'Veg' });
+        this.setState({ foodType: event.target.value as 'Non-vegetarian' | 'Vegetarian' });
     };
 
     // Handles the prep time of the new recipe
@@ -125,7 +125,7 @@ export class NewRecipe extends Component<NewRecipeProps, NewRecipeState> {
         console.log("Saved!");
         this.props.onAddRecipeClick({
             name: this.state.name.trim(),
-            foodType: this.state.foodType as 'Non-veg' | 'Veg',
+            foodType: this.state.foodType as 'Non-vegetarian' | 'Vegetarian',
             prepTime: parseInt(this.state.prepTime),
             ingredients: [],
             instructions: []
