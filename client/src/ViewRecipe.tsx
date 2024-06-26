@@ -1,3 +1,4 @@
+// A page that displays the recipe in a more organized manner
 import React from 'react';
 import { Recipe } from './recipe';
 
