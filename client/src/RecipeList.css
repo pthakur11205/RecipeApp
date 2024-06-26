@@ -1,26 +1,28 @@
-
 .recipe-list-container {
     margin: 20px;
     font-family: Arial, sans-serif;
 }
 
-/* For title of the page */
 .title {
     text-align: center;
     color: #333;
 }
 
 .recipe-list {
+    display: flex;
+    flex-wrap: wrap;
     list-style-type: none;
     padding: 0;
+    gap: 20px;
+    justify-content: center; 
 }
 
 .recipe-item {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
-    margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
+    width: 20%;
     transition: background-color 0.3s;
 }
 
@@ -36,11 +38,7 @@
 .edit-link {
     color: #007BFF;
     text-decoration: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    
+    margin-top: 5px;
 }
 
 .edit-link:hover {

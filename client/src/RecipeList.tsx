@@ -26,14 +26,13 @@ export class RecipeList extends Component<RecipeListProps> {
         return (
             <div className="recipe-list-container">
                 <h2 className="title">Recipe List</h2>
-                <h4 className="title"> To add a new recipe, click the "Add New Recipe" button</h4>
                 <h4 className="title"> To add instructions and ingredients to a recipe, please click "Edit Recipe" next to the recipe you would like to change.</h4>
                 <ul className="recipe-list">
                     {recipes.map((recipe, index) => (
                         <li key={index} className="recipe-item">
                             <div className="recipe-content">
                                 <strong>{recipe.name} </strong>
-                                <a href="#" onClick={(evt) => this.doOpenClick(evt, index)} className="edit-link">Edit Recipe</a>
+                                <a href="#" onClick={(evt) => this.doOpenClick(evt, index)} className="edit-link"> Edit Recipe</a>
                                 <p>Food Type: {recipe.foodType}</p>
                                 <p>Prep Time: {recipe.prepTime} minutes</p>
                             </div>
