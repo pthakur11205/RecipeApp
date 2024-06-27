@@ -1,6 +1,7 @@
 // For the recipe details page where users can add instructions and ingredients
 import React, { Component, ChangeEvent, MouseEvent } from 'react';
 import { Recipe } from './recipe';
+import './RecipeDetails.css'
 
 type RecipeDetailsProps = {
     recipe: Recipe;
@@ -152,21 +153,24 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
         const { ingredients, instructions, newIngredientName, newIngredientQuantity, newInstruction, error } = this.state;
 
         return (
-            <div>
-                <h2>Recipe Details</h2>
-                <div>
-                    <h3>Ingredients</h3>
-                    <h4>If you wish to change an ingredient or its quantity, simply click and edit in the table below. It will automatically save.</h4>
+            <div className="recipe-details-container">
+                <h2 className="recipe-details-title">Recipe Details</h2>
+                <div className="section-container">
+                    <h3 className="section-title">Ingredients</h3>
+                    <h4 className="section-subtitle">Type out your ingredient and its quantity, and hit the button below to add it!</h4>
+                    <h4 className="section-subtitle">If you wish to change an ingredient or its quantity, simply click and edit the textbox.</h4>
                     {ingredients.map((ingredient, index) => (
                         <div key={index}>
                             <input
                                 type="text"
+                                className="input-field"
                                 placeholder="Ingredient Name"
                                 value={ingredient.name}
                                 onChange={(event) => this.handleIngredientNameChange(event, index)}
                             />
                             <input
                                 type="text"
+                                className="input-field"
                                 placeholder="Quantity"
                                 value={ingredient.quantity}
                                 onChange={(event) => this.handleIngredientQuantityChange(event, index)}
@@ -176,22 +180,24 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
                     <div>
                         <input
                             type="text"
+                            className="input-field"
                             placeholder="New Ingredient Name"
                             value={newIngredientName}
                             onChange={this.handleNewIngredientNameChange}
                         />
                         <input
                             type="text"
+                            className="input-field"
                             placeholder="New Ingredient Quantity"
                             value={newIngredientQuantity}
                             onChange={this.handleNewIngredientQuantityChange}
                         />
-                        <button onClick={this.handleAddIngredient}>Add New Ingredient</button>
+                        <button onClick={this.handleAddIngredient} className="form-button">Add New Ingredient</button>
                     </div>
                 </div>
-                <div>
-                    <h3>Instructions</h3>
-                    <h4>Type out your instructions in order, they will automatically be numbered.</h4>
+                <div className="section-container">
+                    <h3 className="section-title">Instructions</h3>
+                    <h4 className="section-subtitle">Type out your instructions in order, they will automatically be numbered.</h4>
                     {instructions.map((instruction, index) => (
                         <div key={index}>
                             {index + 1}. {instruction}
@@ -200,17 +206,18 @@ export class RecipeDetails extends Component<RecipeDetailsProps, RecipeDetailsSt
                     <div>
                         <input
                             type="text"
+                            className="input-field"
                             placeholder="New Instruction"
                             value={newInstruction}
                             onChange={this.handleNewInstructionChange}
                         />
-                        <button onClick={this.handleAddInstruction}>Add New Instruction</button>
+                        <button onClick={this.handleAddInstruction} className="form-button">Add New Instruction</button>
                     </div>
                 </div>
-                <br></br>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <button onClick={this.handleSave}>Save</button>
-                <button onClick={this.props.onBackClick}>Back to Recipe List</button>
+                <br />
+                {error && <p className="error-message">{error}</p>}
+                <button onClick={this.handleSave} className="form-button">Save</button>
+                <button onClick={this.props.onBackClick} className="form-button">Back to Recipe List</button>
             </div>
         );
     }

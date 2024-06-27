@@ -28,8 +28,8 @@ export class RecipeList extends Component<RecipeListProps> {
             <div className="recipe-list-container">
                 <h2 className="title">Recipe List</h2>
                 <h4 className="title"> To add a recipe, click the blue button below</h4>
-                <h4 className="title"> To add/edit instructions and ingredients of a recipe, please click "Edit Recipe" next to the recipe you would like to change.</h4>
-                <h4 className="title"> To see the full recipe, click "View Recipe" next to the recipe you'd like to see!</h4>
+                <h4 className="title"> To add/edit instructions and ingredients of a recipe, please click "Edit Recipe" under the recipe you would like to change.</h4>
+                <h4 className="title"> To see the full recipe, click "View Recipe" under the recipe you'd like to see!</h4>
                 <ul className="recipe-list">
                     {recipes.map((recipe, index) => (
                         <li key={index} className="recipe-item">

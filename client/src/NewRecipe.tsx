@@ -2,6 +2,7 @@
 
 import React, { Component, MouseEvent, ChangeEvent} from 'react';
 import { Recipe } from './recipe';
+import './NewRecipe.css'
 
 type NewRecipeProps = {
     onAddRecipeClick: (recipe: Recipe) => void;
@@ -26,30 +27,41 @@ export class NewRecipe extends Component<NewRecipeProps, NewRecipeState> {
     // For rendering the page for the adding recipes
     render = (): JSX.Element => {
         return (
-            <div>
-                <h2>Add New Recipe</h2>
-                <div>
-                    <label>Recipe Name: </label>
-                    <input type="text" value={this.state.name} onChange={this.handleNameChange} />
+            <div className="new-recipe-container">
+                <h2 className="new-recipe-title">Add New Recipe</h2>
+                <div className="form-field">
+                    <label className="form-label">Recipe Name:</label>
+                    <input
+                        type="text"
+                        className="form-input"
+                        value={this.state.name}
+                        onChange={this.handleNameChange}
+                    />
                 </div>
-                <div>
-                    <br/> <br/> 
-                    <label>Food Type: </label>
-                    <select value={this.state.foodType ?? ''} onChange={this.handleFoodTypeChange}>
+                <div className="form-field">
+                    <label className="form-label">Food Type:</label>
+                    <select
+                        className="form-select"
+                        value={this.state.foodType ?? ''}
+                        onChange={this.handleFoodTypeChange}
+                    >
                         <option value="">Select Food Type</option>
                         <option value="Vegetarian">Vegetarian</option>
                         <option value="Non-vegetarian">Non-vegetarian</option>
                     </select>
                 </div>
-                <div>
-                    <br/> <br/> 
-                    <label>Prep Time (minutes): </label>
-                    <input type="text" value={this.state.prepTime} onChange={this.handlePrepTimeChange} />
-                    <br/> <br/> 
+                <div className="form-field">
+                    <label className="form-label">Prep Time (minutes):</label>
+                    <input
+                        type="text"
+                        className="form-input"
+                        value={this.state.prepTime}
+                        onChange={this.handlePrepTimeChange}
+                    />
                 </div>
-                {this.state.error && <p style={{ color: 'red' }}>{this.state.error}</p>}
-                <button onClick={this.handleAddClick}>Add Recipe</button>
-                <button onClick={this.props.onBackClick}>Back to Recipe List</button>
+                {this.state.error && <p className="error-message">{this.state.error}</p>}
+                <button onClick={this.handleAddClick} className="form-button">Add Recipe</button>
+                <button onClick={this.props.onBackClick} className="form-button">Back to Recipe List</button>
             </div>
         );
     }
