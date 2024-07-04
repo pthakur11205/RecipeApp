@@ -11,9 +11,12 @@ server for later use. It is organized in a clean fashion with instructions for e
 
 Starting Screen: ![image](https://github.com/pthakur11205/RecipeApp/assets/146504583/a7db00b0-7c54-4def-b015-b3b8f6311ff5)
 
+
 Default Screen w/ entries: ![image](https://github.com/pthakur11205/RecipeApp/assets/146504583/67c08a2a-c9a3-477a-b6e3-252e6ce656f7)
 
+
 Edit Recipe Screen: ![image](https://github.com/pthakur11205/RecipeApp/assets/146504583/c6598850-9be6-46df-b446-724562a31f4f)
+
 
 View Recipe Screen: ![image](https://github.com/pthakur11205/RecipeApp/assets/146504583/5421da96-3594-46f7-a2a2-09fac8a35eed)
 
