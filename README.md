@@ -5,7 +5,7 @@ Recipe App
 ## Description
 
 Welcome to the Recipe Web app! This full-stack app allows you to add and edit recipes (including attributes like food type, prep time, ingredients, and instructions) and stores them to the 
-server for later use. It is organized in a clean fashion with instructions for easy use!
+server for later use, with additional viewing features. It is organized in a clean fashion with instructions for easy use!
 
 ### Examples of program function:
 
