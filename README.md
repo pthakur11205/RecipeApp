@@ -14,6 +14,7 @@ server for later use. It is organized in a clean fashion with instructions for e
 
 #### Default Screen w/ entries: ![image](https://github.com/pthakur11205/RecipeApp/assets/146504583/67c08a2a-c9a3-477a-b6e3-252e6ce656f7)
 
+#### Add Recipe Screen: ![image](https://github.com/user-attachments/assets/eb3978ba-6971-44a7-bde4-969c119ff940)
 
 #### Edit Recipe Screen: ![image](https://github.com/pthakur11205/RecipeApp/assets/146504583/c6598850-9be6-46df-b446-724562a31f4f)
 
