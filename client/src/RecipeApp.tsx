@@ -88,6 +88,7 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
         onOpenClick={this.doOpenClick}
         onAddClick={this.doAddClick}
         onViewClick={this.doViewClick}
+        onDeleteClick={this.handleDeleteRecipe}
         />
       </div>;
     // Renders new recipe page
@@ -163,6 +164,24 @@ export class RecipeApp extends Component<{}, RecipeAppState> {
     console.log('View Recipe clicked for index:', index);
     this.setState({ show: { kind: "viewRecipe", index: index } });
   };
+
+  // Handles deleting a recipe
+  handleDeleteRecipe = (index: number): void => {
+    const { recipes } = this.state;
+    const recipeToDelete = recipes[index];
+
+    fetch(`/api/deleteRecipe?name=${encodeURIComponent(recipeToDelete.name)}`, {
+      method: 'DELETE'
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          const updatedRecipes = recipes.filter((_, i) => i !== index);
+          this.setState({ recipes: updatedRecipes });
+        } else {
+          console.error('Failed to delete recipe');
+        }
+      })
+      .catch(() => console.error('Failed to connect to server')); }
 
   
 

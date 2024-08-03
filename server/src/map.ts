@@ -20,6 +20,9 @@ export interface MapInterface {
     /**@returns an array containing all the values from the map */
     getValues: () => unknown[];
 
+    /**Deletes the value associated with the given key in the map */
+    deleteVal: (key: string) => boolean;
+
 }
 
 class MutableMap implements MapInterface {
@@ -88,6 +91,15 @@ class MutableMap implements MapInterface {
      * @returns an array containing all the keys from the map */
     getValues = (): unknown[] => {
         return Array.from(this.map.values());
+    }
+
+    /**
+     * Deletes the value paired with the given key in the map
+     * @param key to delete the corresponding value for
+     * @returns true if the value was deleted, false otherwise
+     */
+    deleteVal = (key: string): boolean => {
+        return this.map.delete(key);
     }
     
 

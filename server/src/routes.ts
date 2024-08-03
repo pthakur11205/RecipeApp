@@ -46,7 +46,25 @@ export const save = (req: SafeRequest, res: SafeResponse): void => {
   
 }
 
-
+/** 
+ * Deletes a recipe by name
+ * @param req request to respond to
+ * @param res object to send response with
+ */
+export const deleteRecipe = (req: SafeRequest, res: SafeResponse): void => {
+  const name = first(req.query.name);
+  if (name === undefined || typeof name !== 'string') {
+    res.status(400).send('required argument "name" was missing');
+    return;
+  }
+  
+  const deleted = recipes.deleteVal(name);
+  if (deleted) {
+    res.send({deleted: true});
+  } else {
+    res.status(404).send('recipe not found');
+  }
+};
 
 
 /** 

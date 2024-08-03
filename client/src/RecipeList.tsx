@@ -9,6 +9,7 @@ type RecipeListProps = {
     onOpenClick: (index: number) => void;
     onAddClick: () => void;
     onViewClick: (index: number) => void;
+    onDeleteClick: (index: number) => void;
 }
 
 
@@ -37,6 +38,7 @@ export class RecipeList extends Component<RecipeListProps> {
                                 <strong>{recipe.name} </strong>
                                 <a href="#" onClick={(evt) => this.doViewClick(evt, index)} className="edit-link">View Recipe</a>
                                 <a href="#" onClick={(evt) => this.doOpenClick(evt, index)} className="edit-link"> Edit Recipe</a>
+                                <button onClick={(evt) => this.doDeleteClick(evt, index)} className="delete-button">Delete Recipe</button>
                                 <p><b>Food Type:</b> {recipe.foodType}</p>
                                 <p><b>Prep Time:</b> {recipe.prepTime} minutes</p>
                             </div>
@@ -64,5 +66,8 @@ export class RecipeList extends Component<RecipeListProps> {
         this.props.onViewClick(index);
     };
 
+    doDeleteClick = (_evt: MouseEvent<HTMLButtonElement>, index: number): void => {
+        this.props.onDeleteClick(index);
+    }
 
 }
