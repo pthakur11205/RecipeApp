@@ -4,15 +4,15 @@ Recipe App
 
 ## Description
 
-Welcome to the Recipe Web app! This full-stack app allows you to add and edit recipes (including attributes like food type, prep time, ingredients, and instructions) and stores them to the 
-server for later use, with additional viewing features. It is organized in a clean fashion with instructions for easy use!
+Welcome to the Recipe Web app! This full-stack app allows you to add, view, delete, and edit recipes (including attributes like food type, prep time, ingredients, and instructions) and stores them to the server for later use. It is organized in a clean fashion with instructions for easy use!
 
 ### Examples of program function:
 
 #### Starting Screen: ![image](https://github.com/pthakur11205/RecipeApp/assets/146504583/a7db00b0-7c54-4def-b015-b3b8f6311ff5)
 
 
-#### Default Screen w/ entries: ![image](https://github.com/pthakur11205/RecipeApp/assets/146504583/67c08a2a-c9a3-477a-b6e3-252e6ce656f7)
+#### Default Screen w/ entries: ![image](https://github.com/user-attachments/assets/de4fe8d3-936c-4eea-a8dd-ccacf061b5e3)
+
 
 #### Add Recipe Screen: ![image](https://github.com/user-attachments/assets/eb3978ba-6971-44a7-bde4-969c119ff940)
 
