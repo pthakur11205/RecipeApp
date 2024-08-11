@@ -8,6 +8,8 @@ Welcome to the Recipe Web app! This full-stack app allows you to add, view, dele
 
 ### Examples of program function:
 
+[![Watch the video](https://i.sstatic.net/Vp2cE.png)]([https://youtu.be/vt5fpE0bzSY](https://www.youtube.com/watch?v=S9qkUvEyswE))
+
 #### Starting Screen: ![image](https://github.com/pthakur11205/RecipeApp/assets/146504583/a7db00b0-7c54-4def-b015-b3b8f6311ff5)
 
 
