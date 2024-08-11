@@ -8,7 +8,9 @@ Welcome to the Recipe Web app! This full-stack app allows you to add, view, dele
 
 ### Examples of program function:
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/S9qkUvEyswE/0.jpg)](https://www.youtube.com/watch?v=S9qkUvEyswE)
 
+https://www.youtube.com/watch?v=S9qkUvEyswE
 
 #### Starting Screen: ![image](https://github.com/pthakur11205/RecipeApp/assets/146504583/a7db00b0-7c54-4def-b015-b3b8f6311ff5)
 
