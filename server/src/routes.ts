@@ -10,8 +10,6 @@ const recipes: MapInterface = makeMutableMap();
 
 
 // Helper to return the (first) value of the parameter if any was given.
-// (This is mildly annoying because the client can also give mutiple values,
-// in which case, express puts them into an array.)
 const first = (param: unknown): string|undefined => {
   if (Array.isArray(param)) {
     return first(param[0]);
